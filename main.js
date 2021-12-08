@@ -2,8 +2,40 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
+document.addEventListener('DOMContentLoaded', () => {
+  const likeButtons = document.getElementsByClassName('like-glyph')
+  console.log (likeButtons)
+  for(const button of likeButtons){
+    button.addEventListener('click', (e) => {
+    mimicServerCall()
+    .then (() =>{
+      if (button.innerText === EMPTY_HEART){
+        button.innerText = FULL_HEART
+      }
+      else if (button.innerText === FULL_HEART){
+        button.innerText = EMPTY_HEART
+      }
+    })
+    .catch(() => {
+      const error = document.querySelector('#modal')
+      error.className = 'show'
 
+      setTimeout(() => {
+        error.className = 'hidden'}, 3000)
+      })
+    })
+  }
+})
+
+
+
+
+/*const likeHeart = document.querySelectorAll('span.like-glyph')
+likeHeart.addEventListener('click', updateHeart)
+
+function updateHeart(like){
+  mimicServerCall
+}*/
 
 
 
